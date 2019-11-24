@@ -15,22 +15,19 @@ namespace Task01
             Console.WriteLine("------------------------------");
 
             Console.WriteLine("\nВведите количество строк для прямоугольного треугольника: ");
-            string StrNumber = Console.ReadLine();
-            Triangle(StrNumber);
+            Triangle();
             Console.WriteLine("------------------------------");
 
             Console.WriteLine("\nВведите количество строк для равнобедренного треугольника: ");
-            string StrNumber1 = Console.ReadLine();
-            AnotherTriangle(StrNumber1);
+            AnotherTriangle();
             Console.WriteLine("------------------------------");
 
             Console.WriteLine("\nВведите количество треугольников для новогодней елки: ");
-            string StrNumber2 = Console.ReadLine();
-            Xmas(StrNumber2);
+            Xmas();
             Console.WriteLine("------------------------------");
 
             Console.WriteLine("\nСумма кратных чисел для 3,5 и меньше 1000: ");
-            Console.WriteLine(NaturalSum());
+            NaturalSum();
             Console.WriteLine("------------------------------");
 
             Console.WriteLine("\nМассив: ");
@@ -46,8 +43,20 @@ namespace Task01
             Console.WriteLine("------------------------------");
 
             Console.WriteLine("Сумма элементов массива на четных позициях: ");
-            int[][] array2d = new int[5][];       
+            Array2();
+            Console.WriteLine("------------------------------");
+
+            Console.WriteLine("Срежняя длина слова в предложении: ");
+            AverageString();
+            Console.WriteLine("------------------------------");
+
+            Console.WriteLine("Удваивает символы в 1й строке из 2й строки: ");
+            CharDoubler();
+            Console.WriteLine("------------------------------");
+
+            Console.ReadKey();
         }
+
 
         #region Rectangle
         static void Rectangle()
@@ -65,15 +74,15 @@ namespace Task01
                 Console.WriteLine("Введите натуральное число. ");
             }
 
-            if(a<=0 || b<=0)
+            if (a <= 0 || b <= 0)
             {
                 Console.WriteLine("Ошибка, число отрицательно или равно нулю.");
             }
             else
             {
-                Console.WriteLine("Площадь: " + a*b);
+                Console.WriteLine("Площадь: " + a * b);
             }
-            
+
         }
         #endregion
 
@@ -84,8 +93,10 @@ namespace Task01
         /// </summary>
         /// <param name="StrNumber"></param>
         /// <returns></returns>
-        static string Triangle(string StrNumber)
+        static string Triangle()
         {
+            string StrNumber = Console.ReadLine();
+
             int result = 0;
 
             bool Conversion = int.TryParse(StrNumber, out result);
@@ -121,8 +132,9 @@ namespace Task01
         /// </summary>
         /// <param name="StrNumber1"></param>
         /// <returns></returns>
-        static string AnotherTriangle(string StrNumber1)
+        static string AnotherTriangle()
         {
+            string StrNumber1 = Console.ReadLine();
             int result1 = 0;
 
             bool Conversion = int.TryParse(StrNumber1, out result1);
@@ -166,8 +178,9 @@ namespace Task01
         /// </summary>
         /// <param name="StrNumber2"></param>
         /// <returns></returns>
-        static string Xmas(string StrNumber2)
+        static string Xmas()
         {
+            string StrNumber2 = Console.ReadLine();
             int result2 = 0;
 
             bool Conversion = int.TryParse(StrNumber2, out result2);
@@ -180,7 +193,7 @@ namespace Task01
             {
                 Console.WriteLine("Вы ввели не целое число!");
             }
-            result2+=1;
+            result2 += 1;
             for (int i = 1; i <= result2; i++)
             {
                 for (int j = 1; j <= i; j++)
@@ -223,9 +236,17 @@ namespace Task01
                 if (i % 3 == 0 || i % 5 == 0)
                     sum += i;
             }
-
-            return sum;
+            Console.WriteLine(sum);
+            return sum;      
         }
+
+
+        #endregion
+
+
+        #region Font Adjustment
+
+
         #endregion
 
 
@@ -356,6 +377,40 @@ namespace Task01
         #endregion
 
 
+        #region 2Darray
+        /// <summary>
+        /// Сумма элементов  стоящих на четной позиции массива
+        /// </summary>
+        static void Array2()
+        {
+            int[,] array2d = new int[3,3];
+            int massiv2sum = 0;
+            Random rnd = new Random();
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    array2d[i,j] = rnd.Next(0, 20);
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.WriteLine("Позиция: [" + i + "," + j + "]  Значение: " + array2d[i, j]);
+                    if ((i + j) % 2 == 0)
+                    {
+                        massiv2sum += array2d[i, j];
+                    }
+                }
+            }
+            Console.WriteLine("\nСумма элементов : " + massiv2sum);
+
+            Console.WriteLine();
+        }
+        #endregion
+
+
         #region Show
         /// <summary>
         /// Отображение двумерного массива
@@ -399,7 +454,65 @@ namespace Task01
                 }
             }
         }
-        #endregion   
+        #endregion
+
+
+        #region AverageString
+        /// <summary>
+        /// Средняя длина слова
+        /// </summary>
+        static void AverageString()
+        {
+            Console.WriteLine("Введите строку: ");
+            var a = Console.ReadLine().ToCharArray();
+            var letters = 0;
+            var words = 1;
+            if (a.Length ==0)
+            {
+                Console.WriteLine("Вы ввели пустую строку!");
+            }
+
+            for (var i = 0; i < a.Length; i++)
+            {
+                if (char.IsLetter(a[i]))
+                    letters++;
+                if (i > 0 && char.IsLetter(a[i - 1]) && !char.IsLetter(a[i]))
+                    words++;
+            }
+
+            Console.WriteLine("Средняя длина слова:" + (((float)letters)/words));
+
+        }
+        #endregion
+
+
+        #region CharDoubler
+        /// <summary>
+        /// Удваивает символы в первой строке, если они встречаются во введенной второй строке.
+        /// </summary>
+        /// <returns></returns>
+        static StringBuilder CharDoubler()
+        {
+            
+            Console.WriteLine("Поочередно введите первую и вторую строку: ");
+            var a = Console.ReadLine();
+            var b = Console.ReadLine();
+            StringBuilder str = new StringBuilder();
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (b.Contains(a[i]))
+                {
+                    str.Append(a[i]);
+                }
+                str.Append(a[i]);
+            }
+           
+
+            Console.WriteLine(str);
+            return str;
+        }
+        #endregion
     }
 
 }
