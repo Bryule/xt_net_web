@@ -43,14 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employee.cs" />
+    <Compile Include="Game\Bonus.cs" />
+    <Compile Include="Game\Enemy.cs" />
+    <Compile Include="Game\Game.cs" />
+    <Compile Include="Game\IBarrier.cs" />
+    <Compile Include="Game\IBonus.cs" />
+    <Compile Include="Game\IEnemy.cs" />
+    <Compile Include="Game\IMovable.cs" />
+    <Compile Include="Game\Map.cs" />
+    <Compile Include="Game\Player.cs" />
+    <Compile Include="Game\Barrier.cs" />
+    <Compile Include="MyString.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ring.cs" />
     <Compile Include="Round.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="VectorGraphics\Figure.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Task02
 {
-    class Round
+    class Round : Figure
     {
-        private double _radius;
-        private double _x;
-        private double _y;
-
+        internal double _radius;
+        internal double _x;
+        internal double _y;
 
         public double Absciss
         {
@@ -65,15 +64,24 @@ namespace Task02
                 return Math.PI * Radius * Radius;
             }
         }
-        public static void Asp()
+
+        public Round(double Radius, double Absciss, double Ordinata)
         {
-            Round ring = new Round();
+            _radius = Radius;
+            _x = Absciss;
+            _y = Ordinata;
+        }
+
+        public static void RoundShow()
+        {
             Console.WriteLine("Введите радиус круга: ");
-            ring.Radius = int.Parse(Console.ReadLine());
+            double Radius = double.Parse(Console.ReadLine());
             Console.WriteLine("Введите координату X круга: ");
-            ring.Absciss = double.Parse(Console.ReadLine());
+            double Absciss = double.Parse(Console.ReadLine());
             Console.WriteLine("Введите координату Y круга: ");
-            ring.Ordinata = double.Parse(Console.ReadLine());
+            double Ordinata = double.Parse(Console.ReadLine());
+
+            Round ring = new Round(Radius, Absciss, Ordinata);
 
             Console.WriteLine("Радиус круга: " + ring.Radius);
             Console.WriteLine("Координата X: " + ring.Absciss);
